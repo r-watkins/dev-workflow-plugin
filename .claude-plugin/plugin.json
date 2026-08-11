@@ -1,0 +1,11 @@
+{
+  "name": "dev-workflow",
+  "displayName": "Dev Workflow",
+  "description": "Structured Research -> Design -> Implement workflow for feature and app development, persisting state to .ai-workspace/<id>/ so context survives across sessions and commands.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Ryan Watkins"
+  },
+  "license": "MIT",
+  "keywords": ["workflow", "research", "design", "implementation", "planning"]
+}
