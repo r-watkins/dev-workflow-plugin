@@ -1,0 +1,13 @@
+{
+  "name": "dev-workflow-local",
+  "owner": {
+    "name": "Ryan Watkins"
+  },
+  "plugins": [
+    {
+      "name": "dev-workflow",
+      "source": "./",
+      "description": "Structured Research -> Design -> Implement workflow for feature and app development"
+    }
+  ]
+}

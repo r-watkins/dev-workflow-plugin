@@ -74,9 +74,19 @@ When both hold, it checks whether any id under `.ai-workspace/` has a task sitti
 
 ## Skills
 
-`skills/find-skills/` is included as an example of the plugin `skills/` directory layout, not something the Research → Design → Implement workflow depends on. It's a copy of the `find-skills` skill from [vercel-labs/skills](https://github.com/vercel-labs/skills), which can be genuinely useful for building out a broader skill list for this plugin or others.
+The `skills/` directory is not something the Research → Design → Implement workflow depends on — it's an example of the plugin `skills/` layout, seeded with a starter set of third-party skills pulled in via the [Skills CLI](https://skills.sh/) (`npx skills add <repo> --skill <name>`):
 
-**Warning:** this skill directs the agent to search and install skills from public sources (e.g., skills.sh and GitHub via `npx skills find` / `npx skills add`), so it will fetch and act on untrusted, user-generated third-party content that can change agent behavior, as described in its `SKILL.md`. Review anything it proposes installing before accepting it.
+| Skill | Source | Purpose |
+| --- | --- | --- |
+| `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | Helps discover and install further skills from skills.sh / GitHub |
+| `frontend-design` | [anthropics/skills](https://github.com/anthropics/skills) | Aesthetic direction and intentional visual design for UI work |
+| `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | React/Next.js performance optimization guidelines |
+| `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Reviews UI code against Web Interface Guidelines |
+| `fastapi-python` | [mindrally/skills](https://github.com/mindrally/skills) | FastAPI development best practices |
+| `postgresql-optimization` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | PostgreSQL-specific features and query tuning |
+| `sql-optimization` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | Cross-database SQL performance tuning |
+
+**Warning:** `find-skills` in particular directs the agent to search and install skills from public sources (e.g., skills.sh and GitHub via `npx skills find` / `npx skills add`), so it will fetch and act on untrusted, user-generated third-party content that can change agent behavior, as described in its `SKILL.md`. More broadly, every skill above is third-party content fetched from a public repo — review each `SKILL.md` (and any files it pulls in, e.g. `vercel-react-best-practices/rules/`) before trusting it, and swap in only the ones relevant to your project.
 
 ## Installation
 
@@ -99,7 +109,24 @@ dev-workflow-plugin/
 │   ├── hooks.json
 │   └── pre-commit-checklist.js
 ├── skills/
-│   └── find-skills/
+│   ├── find-skills/
+│   │   └── SKILL.md
+│   ├── frontend-design/
+│   │   ├── SKILL.md
+│   │   └── LICENSE.txt
+│   ├── vercel-react-best-practices/
+│   │   ├── SKILL.md
+│   │   ├── AGENTS.md
+│   │   ├── README.md
+│   │   ├── metadata.json
+│   │   └── rules/
+│   ├── web-design-guidelines/
+│   │   └── SKILL.md
+│   ├── fastapi-python/
+│   │   └── SKILL.md
+│   ├── postgresql-optimization/
+│   │   └── SKILL.md
+│   └── sql-optimization/
 │       └── SKILL.md
 └── README.md
 ```
