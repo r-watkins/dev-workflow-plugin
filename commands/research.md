@@ -34,12 +34,20 @@ You are running the `/research` command of the Research → Design → Implement
 7. **Answer each clarifying question explicitly** in your output — don't just fold the answers in silently.
 
 8. **Write `.ai-workspace/<id>/research.md`** with:
-   - YAML frontmatter: `id`, `research: in-progress` (set to `complete` once finished), `created`, `prompt`.
+   - YAML frontmatter: `id`, `research: in-progress` (set to `complete` once finished), `created`, `prompt`, `autonomy` (`ask` by default, or `autonomous` — see Decision policy below).
    - Scope questions & the user's answers.
    - Sub-agent findings (file paths, patterns, conventions, integration points) *or* best-practice findings (sources, library choices, trade-offs) depending on which mode was used.
    - Open risks/unknowns that design should account for.
 
 9. **Mark complete.** Set `research: complete` in the frontmatter and tell the user the workspace is ready for `/design <id>`.
+
+### Decision policy (applies to `/research`, `/design`, and `/implement`)
+
+Never guess or assume your way past a fork. Any time you hit a decision point with more than one reasonable path — an ambiguous requirement, a choice between libraries/approaches/patterns, a gap the codebase or best-practice research doesn't resolve — stop and ask the user which way to go, with a short list of the options and your recommendation if you have one. This is the default (`autonomy: ask`) and it holds throughout the whole workflow, not just during research.
+
+The only exception is when the user has explicitly granted autonomy for this work — e.g. "use your judgment," "don't ask me for every decision," "proceed autonomously." When that happens, record `autonomy: autonomous` in this file's frontmatter (instead of the default `ask`) so `/design` and `/implement` inherit it and don't have to re-ask, and from then on log every assumption you make directly in the relevant doc (research.md / design.md / implementation-log.md) so it stays visible to the user later. The user can grant or revoke autonomy verbally at any point in any session — if they do, update the frontmatter to match.
+
+Autonomy never shortens a step that's explicitly marked as a mandatory pause or confirmation elsewhere in these commands (e.g. `/implement`'s pause-for-approval gate) — those apply regardless of autonomy mode.
 
 ### Notes
 

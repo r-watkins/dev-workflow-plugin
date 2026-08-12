@@ -24,6 +24,7 @@ You are running the `/implement` command of the Research → Design → Implemen
 4. **Identify the next task** using the `current_task` pointer in the log — not just the first unchecked box in `design.md` — so resuming after a skip or revision lands on the right task.
 
 5. **Implement the task.** Make code changes for this task only. Do not cascade into the next task's changes, even if it seems convenient.
+   - If the design doc doesn't resolve how to implement some part of this task — a choice between viable approaches, libraries, or edge-case handling — don't guess. Per the Decision policy (see `/research`'s instructions), stop and ask the user, unless `implementation-log.md`'s frontmatter has `autonomy: autonomous`, in which case proceed and record the assumption in that task's log notes. This is separate from the pause-for-approval gate in step 8, which always applies regardless of autonomy mode.
 
 6. **Run tests.** Before pausing for approval, run the project's existing test suite (or the relevant subset for the touched area). If no tests exist for this task's behavior, write minimal tests covering it. Record the result (`passed`/`failed`) in the log entry.
    - If tests fail, iterate autonomously — diagnose and fix — up to a reasonable retry limit (a small handful of attempts) before giving up and surfacing the failure to the user instead of looping indefinitely.
@@ -49,4 +50,5 @@ You are running the `/implement` command of the Research → Design → Implemen
 
 - `implementation-log.md` frontmatter is the durable source of truth. Read and write it on every state transition — never rely on conversation history to know what task you're on, since this command may be invoked in a fresh session.
 - `last_commit` plus `design.md`'s checked-off items are the fallback reconstruction path if the log itself is ever corrupted or out of sync — trust `git log` over the log file if they disagree.
-- Never skip the pause-for-approval step, even for trivial tasks or when a focus note asks you to move fast — approval gates the commit, not the implementation speed.
+- Never skip the pause-for-approval step, even for trivial tasks or when a focus note asks you to move fast — approval gates the commit, not the implementation speed. This holds even when `autonomy: autonomous` is set — autonomy covers open-ended judgment calls during implementation, not the approval/commit gate.
+- Decision policy (see `/research`'s instructions for the full statement): default to asking the user at any fork rather than guessing, unless `autonomy: autonomous` is set in the log's frontmatter — the user can grant or revoke this verbally at any point; update the frontmatter to match.

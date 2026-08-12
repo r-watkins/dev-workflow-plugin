@@ -48,6 +48,12 @@ If you run `/research <id>` and `.ai-workspace/<id>/` already exists, the comman
 
 There's no dedicated rollback command. Because `/implement` commits after each approved task, an approved-and-committed task that later proves wrong can be undone with a normal `git revert <sha>` — the per-task commit is already a clean revert point.
 
+### Decision policy — no silent guessing
+
+By default, all three commands stop and ask you whenever they hit a fork with more than one reasonable path — an ambiguous requirement, a choice between libraries/approaches, an edge case the research or design doc doesn't resolve — instead of picking one on their own. This is tracked as `autonomy: ask` in `research.md`'s frontmatter and carried forward into `design.md` and `implementation-log.md`.
+
+If you'd rather it stop asking and just proceed, tell it so at any point ("use your judgment," "don't ask me for every decision") — it'll set `autonomy: autonomous` and from then on log each assumption it makes in the relevant doc instead of pausing. You can grant or revoke this verbally in any session; it updates the frontmatter to match. Autonomy mode never skips the workflow's hard gates — e.g. `/design`'s confirm-before-finalizing step or `/implement`'s pause-for-approval-before-commit step — those always require your explicit sign-off.
+
 ## The `codebase-locator` / `codebase-analyzer` split
 
 `/research` delegates codebase exploration to two narrow sub-agents instead of reading files directly in the main conversation:
