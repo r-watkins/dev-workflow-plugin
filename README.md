@@ -72,6 +72,12 @@ Splitting search from explanation keeps the main context window clean on large c
 
 When both hold, it checks whether any id under `.ai-workspace/` has a task sitting in an unresolved state (`in-progress`, `pending-tests`, `tests-failed`, or `pending-approval`) and, if so, attaches a warning — visible to both Claude and you — rather than blocking the commit. This is a safety net, not a gate: the actual approve-then-commit sequencing is enforced by `/implement`'s own instructions, and outside a `.ai-workspace/`-enabled project this hook never fires at all.
 
+## Skills
+
+`skills/find-skills/` is included as an example of the plugin `skills/` directory layout, not something the Research → Design → Implement workflow depends on. It's a copy of the `find-skills` skill from [vercel-labs/skills](https://github.com/vercel-labs/skills), which can be genuinely useful for building out a broader skill list for this plugin or others.
+
+**Warning:** this skill directs the agent to search and install skills from public sources (e.g., skills.sh and GitHub via `npx skills find` / `npx skills add`), so it will fetch and act on untrusted, user-generated third-party content that can change agent behavior, as described in its `SKILL.md`. Review anything it proposes installing before accepting it.
+
 ## Installation
 
 Copy this repo's contents into your project's `.claude/commands/`, `.claude/agents/`, and `.claude/hooks/` directories (matching the folder layout above), or install it as a proper plugin — see the [plugins documentation](https://code.claude.com/docs/en/plugins) for how to add it via a marketplace or a local path.
@@ -92,6 +98,9 @@ dev-workflow-plugin/
 ├── hooks/
 │   ├── hooks.json
 │   └── pre-commit-checklist.js
+├── skills/
+│   └── find-skills/
+│       └── SKILL.md
 └── README.md
 ```
 
