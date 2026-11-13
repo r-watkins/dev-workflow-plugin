@@ -82,6 +82,7 @@ The `skills/` directory is not something the Research → Design → Implement w
 | `frontend-design` | [anthropics/skills](https://github.com/anthropics/skills) | Aesthetic direction and intentional visual design for UI work |
 | `vercel-react-best-practices` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | React/Next.js performance optimization guidelines |
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Reviews UI code against Web Interface Guidelines |
+| `impeccable` | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | Frontend design, critique, audit, and polish across UI surfaces |
 | `fastapi-python` | [mindrally/skills](https://github.com/mindrally/skills) | FastAPI development best practices |
 | `postgresql-optimization` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | PostgreSQL-specific features and query tuning |
 | `sql-optimization` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | Cross-database SQL performance tuning |
@@ -122,6 +123,11 @@ dev-workflow-plugin/
 │   │   └── rules/
 │   ├── web-design-guidelines/
 │   │   └── SKILL.md
+│   ├── impeccable/
+│   │   ├── SKILL.md
+│   │   ├── agents/
+│   │   ├── reference/
+│   │   └── scripts/
 │   ├── fastapi-python/
 │   │   └── SKILL.md
 │   ├── postgresql-optimization/
